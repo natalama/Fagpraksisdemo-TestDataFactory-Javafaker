@@ -23,7 +23,7 @@ public class User {
     private LocalDate birthday;
     @Email(message = "Ugyldig epost")
     private String email;
-    @Size(min = 0, max = Integer.MAX_VALUE)
+    @Size(max = 5000)
     private String description;
     private List<Address> addressList = new ArrayList<>(0);
     private List<Phone> phoneList = new ArrayList<>(0);
@@ -33,6 +33,14 @@ public class User {
 
     public List<Phone> getPhoneList() {
         return phoneList;
+    }
+
+    public void addPhone(Phone phone) {
+        phoneList.add(phone);
+    }
+
+    public void removePhone(Phone phone) {
+        phoneList.remove(phone);
     }
 
     public void setPhone(Phone phone) {

@@ -10,12 +10,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Simple-fagpraksisdemo" target="19" />
+      <module name="Simple-fagpraksisdemo" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Simple-fagpraksisdemo" options="--add-modules java.base" />
+      <module name="Simple-fagpraksisdemo" options="" />
     </option>
   </component>
 </project>

@@ -23,7 +23,7 @@ public class UserFactory {
     }
 
     public static User aValidNorwegianUser() {
-        Faker faker = new Faker(Locale.of("nb_NO"));
+        Faker faker = new Faker(Locale.forLanguageTag("nb-NO"));
         final CreditCardType creditCardType = faker.options().option(CreditCardType.values());
         User user = new User();
         user.setFirstName(faker.name().firstName());

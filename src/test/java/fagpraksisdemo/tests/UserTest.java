@@ -1,5 +1,6 @@
 package fagpraksisdemo.tests;
 
+import fagpraksisdemo.builders.UserTestDataBuilder;
 import jakarta.validation.ConstraintViolation;
 import fagpraksisdemo.model.Address;
 import fagpraksisdemo.model.AddressType;
@@ -20,7 +21,7 @@ public class UserTest {
     @Test
     @Disabled(value = """
             Frarådes. Ikke alle heter Ola Nordmann,
-            ikke alle er 10 år gamle, osv... 
+            ikke alle er 10 år gamle, osv...
             Det passer kun for akkurat denne casen""")
     public void aTestToAvoid() {
         User user = new User();
@@ -38,17 +39,9 @@ public class UserTest {
     }
 
     @Test
-    /**Her får vi en forskjellig gyldig person hver eneste gang*/
+    /*Her får vi en forskjellig gyldig person hver eneste gang*/
     public void testValidPerson() {
         User user = aValidUser();
-        System.out.println(user);
-        Set<ConstraintViolation<User>> validationMessages = DefaultValidator.getInstance().validate(user);
-        Assertions.assertTrue(CollectionUtils.isEmpty(validationMessages));
-    }
-
-    @Test
-    public void testAnotherValidPerson() {
-        User user = aValidUserWithDiseaseAsLastName();
         System.out.println(user);
         Set<ConstraintViolation<User>> validationMessages = DefaultValidator.getInstance().validate(user);
         Assertions.assertTrue(CollectionUtils.isEmpty(validationMessages));
@@ -84,6 +77,29 @@ public class UserTest {
         System.out.println(bruker);
         Set<ConstraintViolation<User>> validationMessages = DefaultValidator.getInstance().validate(bruker);
         Assertions.assertTrue(validationMessages.stream().anyMatch(p -> p.getMessage().equalsIgnoreCase("For langt fornavn")));
+    }
+
+    /*Litt mer kompleks data? null problem. Du kan lage en test data builder for det*/
+    @Test
+    public void testAValidUserWithAddressAndPhone() {
+        User user = new UserTestDataBuilder()
+                .withValidBasicUserInfo()
+                .withValidDefaultAddress()
+                .withValidPhone()
+                .build();
+        System.out.println(user);
+        Set<ConstraintViolation<User>> validationMessages = DefaultValidator.getInstance().validate(user);
+        Assertions.assertTrue(CollectionUtils.isEmpty(validationMessages));
+    }
+
+    @Test
+    public void testAValidPersonWithValidAddress() {
+        User user = new UserTestDataBuilder()
+                .withValidBasicUserInfo()
+                .withValidDefaultAddress().build();
+        System.out.println(user);
+        Set<ConstraintViolation<User>> validationMessages = DefaultValidator.getInstance().validate(user);
+        Assertions.assertTrue(CollectionUtils.isEmpty(validationMessages));
     }
 
 
