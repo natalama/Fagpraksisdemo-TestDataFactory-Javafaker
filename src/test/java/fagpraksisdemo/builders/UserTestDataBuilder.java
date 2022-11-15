@@ -6,6 +6,7 @@ import fagpraksisdemo.tests.UserTest;
 
 import java.util.Locale;
 
+/*Test data builder to add more complex data*/
 public class UserTestDataBuilder {
 
     private final User user;
