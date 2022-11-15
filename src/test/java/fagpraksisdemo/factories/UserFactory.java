@@ -65,6 +65,7 @@ public class UserFactory {
          mer realistisk testdata enn å skrive tilfeldige tegn*/
         user.setFirstName(faker.lorem().sentence(100).substring(0, 101));
         user.setLastName(faker.name().lastName());
+        user.setEmail(faker.name().fullName());
         user.setDescription("This user once said: " + faker.twinPeaks().quote());
         return user;
     }

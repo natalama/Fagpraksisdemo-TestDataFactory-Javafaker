@@ -13,17 +13,17 @@ import java.util.stream.IntStream;
 public class User {
 
     @NotNull(message = "Fornavn kan ikke være null")
-    @Size(min = 2, max = 100, message = "For langt fornavn")
+    @Size(min = 2, max = 100, message = "\'${validatedValue}\' er for langt fornavn")
     private String firstName;
     @NotNull(message = "Etternavn kan ikke være null")
-    @Size(min = 1, max = 100, message = "For langt etternavn")
+    @Size(min = 1, max = 100, message = "\'${validatedValue}\' er for langt etternavn")
     private String lastName;
     @NotNull(message = "En person må være født i en viss dato")
-    @PastOrPresent(message = "Ugyldig fødselsdato")
+    @PastOrPresent(message = "\'${validatedValue}\' er en ugyldig fødselsdato")
     private LocalDate birthday;
-    @Email(message = "Ugyldig epost")
+    @Email(message = "\'${validatedValue}\' er en ugyldig epost")
     private String email;
-    @Size(max = 5000)
+    @Size(max = 5000, message = "\'${validatedValue}\' er for lang beskrivelse")
     private String description;
     private List<Address> addressList = new ArrayList<>(0);
     private List<Phone> phoneList = new ArrayList<>(0);

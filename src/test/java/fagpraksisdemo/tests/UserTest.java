@@ -36,6 +36,7 @@ public class UserTest {
         address.setPostalCode("0977");
         address.setCountryCode("NO");
         user.addAddress(address);
+        System.out.println(address);
     }
 
     @Test
@@ -76,7 +77,8 @@ public class UserTest {
         User bruker = aUserWithExtremelyLongFirstName();
         System.out.println(bruker);
         Set<ConstraintViolation<User>> validationMessages = DefaultValidator.getInstance().validate(bruker);
-        Assertions.assertTrue(validationMessages.stream().anyMatch(p -> p.getMessage().equalsIgnoreCase("For langt fornavn")));
+        validationMessages.stream().map(p -> p.getMessage()).forEach(System.out::println);
+        Assertions.assertTrue(validationMessages.stream().anyMatch(p -> p.getMessage().contains("for langt fornavn")));
     }
 
     /*Litt mer kompleks data? null problem. Du kan lage en test data builder for det*/

@@ -1,6 +1,7 @@
 package fagpraksisdemo.model;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public class Address {
 
@@ -13,7 +14,8 @@ public class Address {
     private String addressLine2;
     @NotNull(message = "Addresselinje 3 kreves!")
     private String addressLine3;
-    @NotNull(message = "Ugyldig postkode")
+    @NotNull(message = "Postkode kreves")
+    @Pattern(regexp = "[0-9]{4}", message = "\"${validatedValue}\" er en ugyldig postnummer")
     private String postalCode;
     private String countryCode;
 

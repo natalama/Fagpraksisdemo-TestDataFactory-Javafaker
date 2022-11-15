@@ -25,11 +25,6 @@ public class UserTestDataBuilder {
         user = new User();
     }
 
-
-    public UserTestDataBuilder withValidBasicUserInfo() {
-        return withValidFirstName().withValidLastName().withValidBirthday().withValidEmail().withBookAuthoredAsDescription();
-    }
-
     public UserTestDataBuilder withValidFirstName() {
         user.setFirstName(faker.name().firstName());
         return this;
@@ -58,6 +53,10 @@ public class UserTestDataBuilder {
     public UserTestDataBuilder withBookAuthoredAsDescription() {
         user.setDescription(String.format("Author of \"%s\"", faker.book().title()));
         return this;
+    }
+
+    public UserTestDataBuilder withValidBasicUserInfo() {
+        return withValidFirstName().withValidLastName().withValidBirthday().withValidEmail().withBookAuthoredAsDescription();
     }
 
     public UserTestDataBuilder withValidDefaultAddress() {
