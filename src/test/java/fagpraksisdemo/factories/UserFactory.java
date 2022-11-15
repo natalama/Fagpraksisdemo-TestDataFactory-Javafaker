@@ -35,7 +35,7 @@ public class UserFactory {
                          Utløper: {2}
                          Kode: {3}""", creditCardType, faker.finance().creditCard(creditCardType), faker.business().creditCardExpiry(),
                 faker.number().randomNumber(3, true)));
-        user.setBirthday(faker.date().birthday(18,60));
+        user.setBirthday(faker.date().birthday(18, 60));
         return user;
     }
 
@@ -53,7 +53,7 @@ public class UserFactory {
         user.setFirstName(faker.funnyName().name());
         user.setLastName(faker.medical().diseaseName());
         user.setBirthday(LocalDate.ofInstant(faker.date().birthday(18, 67).toInstant(), ZoneId.systemDefault()));
-        user.setDescription("Author of the book: Journey of "+ faker.backToTheFuture().character() + " and " + faker.friends().character()+" to "+  faker.space().galaxy());
+        user.setDescription("Author of the book: Journey of " + faker.backToTheFuture().character() + " and " + faker.friends().character() + " to " + faker.space().galaxy());
         user.setEmail(faker.internet().emailAddress());
         return user;
     }
@@ -61,6 +61,8 @@ public class UserFactory {
     public static User aUserWithExtremelyLongFirstName() {
         Faker faker = new Faker();
         User user = new User();
+        /*101 tegn er akkurat over grensa til gyldig antall tegn og lorem produserer
+         mer realistisk testdata enn å skrive tilfeldige tegn*/
         user.setFirstName(faker.lorem().sentence(100).substring(0, 101));
         user.setLastName(faker.name().lastName());
         user.setDescription("This user once said: " + faker.twinPeaks().quote());
